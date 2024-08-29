@@ -9,6 +9,8 @@ import pl.piwowarski.onlineshopbackend.mappers.ProductMapper;
 import pl.piwowarski.onlineshopbackend.repositories.ProductRepository;
 import pl.piwowarski.onlineshopbackend.services.product.ProductService;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -21,5 +23,10 @@ public class ProductServiceImpl implements ProductService {
                 .findById(id)
                 .orElseThrow(NoProductWithSuchIdException::new);
         return ProductMapper.map(product);
+    }
+
+    @Override
+    public List<GetProductDto> getAllProducts() {
+        return null;
     }
 }

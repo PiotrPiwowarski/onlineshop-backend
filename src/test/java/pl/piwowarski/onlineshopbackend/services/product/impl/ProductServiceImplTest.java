@@ -5,12 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import pl.piwowarski.onlineshopbackend.dtos.GetProductDto;
 import pl.piwowarski.onlineshopbackend.entities.Product;
-import pl.piwowarski.onlineshopbackend.exceptions.NoProductWithSuchIdException;
 import pl.piwowarski.onlineshopbackend.mappers.ProductMapper;
 import pl.piwowarski.onlineshopbackend.repositories.ProductRepository;
 import pl.piwowarski.onlineshopbackend.services.product.ProductService;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 public class ProductServiceImplTest {

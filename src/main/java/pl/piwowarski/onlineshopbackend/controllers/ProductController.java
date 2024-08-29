@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.piwowarski.onlineshopbackend.dtos.GetProductDto;
 import pl.piwowarski.onlineshopbackend.services.product.ProductService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,6 +21,12 @@ public class ProductController {
     public ResponseEntity<GetProductDto> getProductById(@PathVariable long productId) {
         GetProductDto product = productService.getProductById(productId);
         return ResponseEntity.ok(product);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<GetProductDto>> getAllProducts() {
+        List<GetProductDto> allProducts = productService.getAllProducts();
+        return ResponseEntity.ok(allProducts);
     }
 
 }
