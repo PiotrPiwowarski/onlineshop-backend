@@ -9,6 +9,7 @@ import pl.piwowarski.onlineshopbackend.mappers.ProductMapper;
 import pl.piwowarski.onlineshopbackend.repositories.ProductRepository;
 import pl.piwowarski.onlineshopbackend.services.product.ProductService;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ProductServiceImplTest {
@@ -23,6 +24,8 @@ public class ProductServiceImplTest {
             .id(1L)
             .name("Schar bread")
             .build();
+    private final List<GetProductDto> getProductsDtoList = List.of(getProductDto);
+    private final List<Product> productsList = List.of(product);
 
     @Test
     void ifProductIsNotNullThenReturnsTrue() {
@@ -32,6 +35,16 @@ public class ProductServiceImplTest {
             GetProductDto productById = productService.getProductById(1L);
             Assertions.assertNotNull(productById);
             Assertions.assertDoesNotThrow(() -> productService.getProductById(1L));
+        }
+    }
+
+    @Test
+    void ifProductListContainsMoreThanZeroProductsThenReturnsTrue() {
+        Mockito.when(productRepository.findAll()).thenReturn(productsList);
+        try(var mockStatic = Mockito.mockStatic(ProductMapper.class)) {
+           mockStatic.when(() -> ProductMapper.map(product)).thenReturn(getProductDto);
+           List<GetProductDto> list = productService.getAllProducts();
+           Assertions.assertEquals(1, list.size());
         }
     }
 }
