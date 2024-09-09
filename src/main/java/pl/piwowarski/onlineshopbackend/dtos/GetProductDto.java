@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.piwowarski.onlineshopbackend.enums.ProductType;
+import pl.piwowarski.onlineshopbackend.enums.Category;
 
 import java.math.BigDecimal;
 
@@ -16,7 +16,7 @@ public class GetProductDto {
 
     private long id;
     private String name;
-    private ProductType productType;
+    private Category category;
     private BigDecimal price;
     private String description;
 }

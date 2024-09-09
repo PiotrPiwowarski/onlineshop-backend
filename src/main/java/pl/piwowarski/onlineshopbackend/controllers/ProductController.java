@@ -29,4 +29,10 @@ public class ProductController {
         return ResponseEntity.ok(allProducts);
     }
 
+    @GetMapping
+    public ResponseEntity<List<GetProductDto>> getProductsByCategory(@RequestParam String category) {
+        List<GetProductDto> productsByCategory = productService.getProductsByCategory(category);
+        return ResponseEntity.ok(productsByCategory);
+    }
+
 }

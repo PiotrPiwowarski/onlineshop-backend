@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import pl.piwowarski.onlineshopbackend.dtos.GetProductDto;
 import pl.piwowarski.onlineshopbackend.entities.Product;
+import pl.piwowarski.onlineshopbackend.enums.Category;
 import pl.piwowarski.onlineshopbackend.mappers.ProductMapper;
 import pl.piwowarski.onlineshopbackend.repositories.ProductRepository;
 import pl.piwowarski.onlineshopbackend.services.product.ProductService;
@@ -19,12 +20,13 @@ public class ProductServiceImplTest {
     private final Product product = Product.builder()
             .id(1L)
             .name("Schar bread")
+            .category(Category.BREAD)
             .build();
     private final GetProductDto getProductDto = GetProductDto.builder()
             .id(1L)
             .name("Schar bread")
+            .category(Category.BREAD)
             .build();
-    private final List<GetProductDto> getProductsDtoList = List.of(getProductDto);
     private final List<Product> productsList = List.of(product);
 
     @Test
@@ -45,6 +47,16 @@ public class ProductServiceImplTest {
            mockStatic.when(() -> ProductMapper.map(product)).thenReturn(getProductDto);
            List<GetProductDto> list = productService.getAllProducts();
            Assertions.assertEquals(1, list.size());
+        }
+    }
+
+    @Test
+    void ifProductListContainsMoreThanZeroProductsFromSpecificCategoryThenReturnsTrue() {
+        Mockito.when(productRepository.findAllByCategory(Category.BREAD)).thenReturn(List.of(product));
+        try(var mockStatic = Mockito.mockStatic(ProductMapper.class)) {
+            mockStatic.when(() -> ProductMapper.map(product)).thenReturn(getProductDto);
+            List<GetProductDto> products = productService.getProductsByCategory("bread");
+            Assertions.assertEquals(1, products.size());
         }
     }
 }

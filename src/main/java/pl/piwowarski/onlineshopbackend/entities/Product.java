@@ -2,7 +2,7 @@ package pl.piwowarski.onlineshopbackend.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import pl.piwowarski.onlineshopbackend.enums.ProductType;
+import pl.piwowarski.onlineshopbackend.enums.Category;
 
 import java.math.BigDecimal;
 
@@ -19,7 +19,7 @@ public class Product {
     private long id;
     private String name;
     @Enumerated(value = EnumType.STRING)
-    private ProductType productType;
+    private Category category;
     private BigDecimal price;
     private String description;
 }

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.piwowarski.onlineshopbackend.dtos.GetProductDto;
 import pl.piwowarski.onlineshopbackend.entities.Product;
+import pl.piwowarski.onlineshopbackend.enums.Category;
 import pl.piwowarski.onlineshopbackend.exceptions.NoProductWithSuchIdException;
 import pl.piwowarski.onlineshopbackend.mappers.ProductMapper;
 import pl.piwowarski.onlineshopbackend.repositories.ProductRepository;
@@ -28,6 +29,19 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<GetProductDto> getAllProducts() {
         List<Product> products = productRepository.findAll();
-        return products.stream().map(ProductMapper::map).toList();
+        return products
+                .stream()
+                .map(ProductMapper::map)
+                .toList();
+    }
+
+    @Override
+    public List<GetProductDto> getProductsByCategory(String category) {
+        Category finalCategory = Category.valueOf(category.toUpperCase());
+        return productRepository
+                .findAllByCategory(finalCategory)
+                .stream()
+                .map(ProductMapper::map)
+                .toList();
     }
 }

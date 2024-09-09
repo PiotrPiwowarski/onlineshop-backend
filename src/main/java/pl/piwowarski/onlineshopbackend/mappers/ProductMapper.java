@@ -12,7 +12,7 @@ public final class ProductMapper {
         return GetProductDto.builder()
                 .id(product.getId())
                 .name(product.getName())
-                .productType(product.getProductType())
+                .category(product.getCategory())
                 .price(product.getPrice())
                 .description(product.getDescription())
                 .build();

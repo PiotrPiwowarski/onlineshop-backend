@@ -1,6 +1,6 @@
 package pl.piwowarski.onlineshopbackend.enums;
 
-public enum ProductType {
+public enum Category {
 
     BREAD,
     DRINK,
