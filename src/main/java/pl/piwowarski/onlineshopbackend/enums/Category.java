@@ -4,5 +4,6 @@ public enum Category {
 
     BREAD,
     DRINK,
-    SWEET
+    SWEET,
+    OTHER
 }

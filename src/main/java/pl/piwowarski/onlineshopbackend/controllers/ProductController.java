@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/product/")
+@RequestMapping("/api/product")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class ProductController {
 
